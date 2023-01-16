@@ -11,7 +11,7 @@ const getByIdProducts = async (id) => {
 
   if (!products) return { type: 404, message: 'Product not found' };
 
-  return { type: null, data: products };
+  return { type: null, message: products };
 };
 
 module.exports = {
