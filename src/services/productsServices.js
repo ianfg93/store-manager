@@ -1,5 +1,4 @@
 const { productsModels } = require('../models');
-// const schema = require('./validations/schema');
 
 const listAllProducts = async () => {
   const products = await productsModels.listAllProducts();
