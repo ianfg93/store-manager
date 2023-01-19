@@ -1,35 +1,44 @@
 const Joi = require('joi');
 
 const salesModels = require('../models/salesModels');
+const salesProductModels = require('../models/salesProductModels');
+// const productsModels = require('../models/productsModels');
+// const validateSales = require('../middlewares/validateSales');
 
-// const createSales = async (name) => {
-//   const products = await salesModels.createSales();
-//   name.forEach(async (element) => {
-//     const { quantity, productId } = element;
-//     await salesModels.createSales({ products, quantity, productId });
-//   });
-//   return products;
-// };
+const listAllSales = async () => {
+  const sales = await salesModels.listAllSales();
 
-const schema = Joi.object({
-  name: Joi.string().min(5).required(),
-}).required();
+  return { type: '', message: sales };
+};
+
+const getByIdSales = async (id) => {
+  const sales = await salesModels.getByIdSales(id);
+
+  if (!sales) return { type: 404, message: 'Sale not found' };
+
+  return { type: null, message: sales };
+};
 
 const createSales = async (salesArray) => {
-  const salesArraySchema = Joi.array().items(schema);
+  const salesArraySchema = Joi.array().items(Joi.object({ 
+    productId: Joi.number().min(1).required(),
+    quantity: Joi.number().min(1).required().messages({ 
+      'number.min': '"quantity" must be greater than or equal to 1',
+    }),
+  }));
   const { error } = salesArraySchema.validate(salesArray);
-  console.log(error);
-  if (error.type) throw { status: 400, message: error.message };
-  console.log(error.type);
+  if (error) return { type: 201, message: error.message };
+      const id = await salesModels.registerSales();
 
-  const newSalesPromises = salesArray.map((sale) => salesModels.createSales(sale));
-  const newSalesPromise = await Promise.all(newSalesPromises);
-
-  const newSales = salesArray
-    .map((sale, index) => ({ id: newSalesPromise[index], ...sale }));
-  return newSales;
+  const newSalesPromises = salesArray.map((sale) => salesProductModels.createSales({
+    saleId: id, ...sale,
+  }));
+  await Promise.all(newSalesPromises);
+  return { id, itemsSold: salesArray };
 };
 
 module.exports = {
   createSales,
-};
+  listAllSales,
+  getByIdSales,
+  };
