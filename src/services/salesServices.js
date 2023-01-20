@@ -8,7 +8,7 @@ const salesProductModels = require('../models/salesProductModels');
 const listAllSales = async () => {
   const sales = await salesModels.listAllSales();
 
-  return { type: '', message: sales };
+  return sales;
 };
 
 const getByIdSales = async (id) => {
