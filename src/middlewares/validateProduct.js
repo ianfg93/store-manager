@@ -21,11 +21,23 @@ const updateProducts = async (req, res, next) => {
   if (name.length < 5) {
     return res.status(422).json({ message: '"name" length must be at least 5 characters long' });
   }
-  if (!product) res.status(404).json({ message: 'Product not found' });
+  if (!product) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  next();
+};
+
+const deleteProducts = async (req, res, next) => {
+  const { id } = req.params;
+  const product = await productsModels.getByIdProducts(id);
+  if (!product) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
   next();
 };
 
 module.exports = {
   validateProducts,
   updateProducts,
+  deleteProducts,
 };
