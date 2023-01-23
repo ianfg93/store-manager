@@ -37,10 +37,8 @@ describe('Model product', function () {
       expect(result).to.be.deep.equal(sales)
     })
   })
-});
 
-describe('Model product id', function () {
-  describe('List all products for id', function () {
+  describe('List products id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -72,10 +70,7 @@ describe('Model product id', function () {
       expect(result).to.be.deep.equal({ type: 'NOT_FOUND', message: 'Sale not found' })
     })
   })
-});
-
 describe('Create product', function () {
-  describe('List all products id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -95,10 +90,8 @@ describe('Create product', function () {
       expect(result).to.be.deep.equal({ type: 'NOT_FOUND', message: 'Product not found' })
     })
   })
-});
 
 describe('Update product', function () {
-  describe('List all products for id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -121,10 +114,8 @@ describe('Update product', function () {
       expect(result).to.be.deep.equal({ type: 'NOT_FOUND', message: 'Product not found' })
     })
   })
-});
 
 describe('Delete product', function () {
-  describe('List all products for id', function () {
     afterEach(() => {
       sinon.restore();
     })

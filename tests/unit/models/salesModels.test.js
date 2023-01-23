@@ -34,10 +34,8 @@ describe('Model product', function () {
       expect(result).to.be.deep.equal(sales)
     })
   })
-});
 
-describe('Model product id', function () {
-  describe('List all products for id', function () {
+describe('List product id', function () {
     afterEach(() => {
       sinon.restore();
     })

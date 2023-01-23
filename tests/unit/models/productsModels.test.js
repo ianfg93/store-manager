@@ -20,10 +20,8 @@ describe('Model product', function () {
       expect(result).to.be.deep.equal(mock.allProductsResponse)
     })
   })
-});
 
-describe('Model product id', function () {
-  describe('List all products for id', function () {
+describe('List product id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -36,10 +34,8 @@ describe('Model product id', function () {
       expect(result).to.be.deep.equal(mock.allProductsResponse[3])
     })
   })
-});
 
 describe('Create product', function () {
-  describe('List all products id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -52,10 +48,8 @@ describe('Create product', function () {
       expect(result).to.be.deep.equal(5)
     })
   })
-});
 
 describe('Update product', function () {
-  describe('List all products for id', function () {
     afterEach(() => {
       sinon.restore();
     })
@@ -69,10 +63,8 @@ describe('Update product', function () {
       expect(result).to.be.deep.equal(1)
     })
   })
-});
 
 describe('Delete product', function () {
-  describe('List all products for id', function () {
     afterEach(() => {
       sinon.restore();
     })
