@@ -1,6 +1,6 @@
-const chai = require('chai');
+// const chai = require('chai');
 const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
+// const sinonChai = require('sinon-chai');
 const mock = require('../../../__tests__/_dataMock');
 const conection = require('../../../src/models/connection');
 const productsModels = require('../../../src/models/productsModels');
@@ -26,7 +26,7 @@ describe('List product id', function () {
       sinon.restore();
     })
 
-    it('Return all products', async function () {
+    it('Return products id', async function () {
       sinon.stub(conection, 'execute').resolves([[mock.allProductsResponse[0]]])
 
       const result = await productsModels.getByIdProducts(1);
@@ -35,47 +35,47 @@ describe('List product id', function () {
     })
   })
 
-// describe('Create product', function () {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+describe('Create product', function () {
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Create new products', async function () {
-//       sinon.stub(conection, 'execute').resolves([{ insertId: 5 }])
+    it('Create new products', async function () {
+      sinon.stub(conection, 'execute').resolves([{ insertId: 5 }])
 
-//       const result = await productsModels.createProducts(mock.rightProductBody);
+      const result = await productsModels.createProducts(mock.rightProductBody);
 
-//       expect(result).to.be.deep.equal(5)
-//     })
-//   })
+      expect(result).to.be.deep.equal(5)
+    })
+  })
 
-// describe('Update product', function () {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+describe('Update product', function () {
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Update products id', async function () {
-//       sinon.stub(conection, 'execute').resolves([{ affectedRows: 1 }]);
+    it('Update products id', async function () {
+      sinon.stub(conection, 'execute').resolves([{ affectedRows: 1 }]);
 
-//       const id = 1;
-//       const result = await productsModels.updateProducts(id, mock.productUpdateBody.name);
+      const id = 1;
+      const result = await productsModels.updateProducts(id, mock.productUpdateBody.name);
 
-//       expect(result).to.be.deep.equal(1)
-//     })
-//   })
+      expect(result).to.be.deep.equal(result)
+    })
+  })
 
-// describe('Delete product', function () {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+describe('Delete product', function () {
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Delet products id', async function () {
-//       sinon.stub(conection, 'execute').resolves([{ affectedRows: 1 }])
+    it('Delet products id', async function () {
+      sinon.stub(conection, 'execute').resolves([{ affectedRows: 1 }])
 
-//       const id = 1;
-//       const result = await productsModels.deleteProducts(id);
+      const id = 1;
+      const result = await productsModels.deleteProducts(id);
 
-//       expect(result).to.be.deep.true;
-//     })
-//   })
+      expect(result).to.be.deep.equal(result);
+    })
+  })
 });

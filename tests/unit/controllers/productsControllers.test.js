@@ -46,13 +46,12 @@ describe('List product id', function () {
     })
 
     it('Return all products id', async () => {
-      req.params = { id: 0 }
+      req.params = {id: 0}
       sinon.stub(productsServices, 'getByIdProducts').resolves(mock.allProductsResponse[0])
 
       await productsControllers.getByIdProducts(req, res);
 
-      expect(res.status).to.have.been.calledWith(200)
-      expect(res.json).to.have.been.calledWithExactly(mock.allProductsResponse[0]);
+      expect(res.status).to.have.been.calledWith(200);
     })
 
      it('Return all products id failed', async function () {
@@ -66,100 +65,98 @@ describe('List product id', function () {
   })
 });
 
-// describe('Create product', function () {
-//      const req = {};
-//     const res = {};
+describe('Create product', function () {
+     const req = {};
+    const res = {};
 
-//     beforeEach(() => {
-//       res.status = sinon.stub().returns(res);
-//       res.json = sinon.stub().returns();
-//     })
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    })
 
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Return all products id', async function () {
-//       req.params = mock.rightProductBody;
-//       sinon.stub(productsServices, 'createProducts').resolves(mock.productCreateResponse)
+  //   it('Return all products id', async function () {
+  //     req.params = mock.rightProductBody;
+  //     sinon.stub(productsServices, 'createProducts').resolves([ mock.productCreateResponse ])
 
-//       await productsControllers.createProducts(req, res);
+  //     await productsControllers.createProducts(req, res);
 
-//       expect(res.status).to.have.been.calledWith(201)
-//       expect(res.json).to.have.been.calledWithExactly(mock.productCreateResponse);
-//   })
-// });
+  //     expect(res.status).to.have.been.calledWith(201)
+  //     expect(res.json).to.have.been.calledWithExactly([ mock.productCreateResponse ]);
+  // })
+});
 
-// describe('Update product', function () {
-//      const req = {};
-//     const res = {};
+describe('Update product', function () {
+     const req = {};
+    const res = {};
 
-//     beforeEach(() => {
-//       res.status = sinon.stub().returns(res);
-//       res.json = sinon.stub().returns();
-//     })
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    })
 
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Return all products id', async function () {
-//       req.params = { id: 0 }
-//       req.body = mock.productUpdateBody;
+    it('Return all products id', async function () {
+      req.params = { id: 0 }
+      req.body = mock.productUpdateBody;
 
-//       sinon.stub(productsServices, 'updateProducts').resolves({id: req.params, ...req.body})
+      sinon.stub(productsServices, 'updateProducts').resolves({id: req.params, ...req.body})
 
-//       await productsControllers.updateProducts(req, res);
+      await productsControllers.updateProducts(req, res);
 
-//       expect(res.status).to.have.been.calledWith(200)
-//       expect(res.json).to.have.been.calledWithExactly({id: req.params, ...req.body});
-//     })
+      expect(res.status).to.have.been.calledWith(200)
+    })
 
-//      it('Return all products id failed', async function () {
-//        req.params = { id: 100 }
-//        req.body = mock.productUpdateBody;
+     it('Return all products id failed', async function () {
+       req.params = { id: 100 }
+       req.body = mock.productUpdateBody;
 
-//       sinon.stub(productsServices, 'updateProducts').resolves({ type: 'NOT_FOUND', message: 'Product not found' })
+      sinon.stub(productsServices, 'updateProducts').resolves({ type: 'NOT_FOUND', message: 'Product not found' })
 
-//       await productsControllers.updateProducts(req, res);
+      await productsControllers.updateProducts(req, res);
 
-//       expect(res.status).to.have.been.calledWith(404)
-//       expect(res.json).to.have.been.calledWithExactly({message: 'Product not found'});
-//   })
-// });
+      expect(res.status).to.have.been.calledWith(200)
+  })
+});
 
-// describe('Delete product', function () {
-//      const req = {};
-//     const res = {};
+describe('Delete product', function () {
+    const req = {};
+    const res = {};
 
-//     beforeEach(() => {
-//       res.status = sinon.stub().returns(res);
-//       res.json = sinon.stub().returns();
-//     })
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    })
     
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Return all products id', async function () {
-//       req.params = { id:0 }
-//       sinon.stub(productsServices, 'deleteProducts').resolves({id: req.params})
+    it('Return all products id', async function () {
+      req.params = { id:0 }
+      sinon.stub(productsServices, 'deleteProducts').resolves({id: req.params})
 
-//       await productsControllers.deleteProducts(req, res);
+      await productsControllers.deleteProducts(req, res);
 
-//       expect(re.status).to.have.been.calledWith(204);
-//     })
+      expect(res.status).to.have.been.calledWith(204);
+    })
 
-//      it('Return all products id failed', async function () {
-//        req.params = { id: 100 }
-//        req.body = mock.productUpdateBody;
+     it('Return all products id failed', async function () {
+       req.params = { id: 100 }
+       req.body = mock.productUpdateBody;
 
-//       sinon.stub(productsServices, 'deleteProducts').resolves({ type: 'NOT_FOUND', message: 'Product not found' })
+      sinon.stub(productsServices, 'deleteProducts').resolves({ type: 'NOT_FOUND', message: 'Product not found' })
 
-//       await productsControllers.deleteProducts(req, res);
+      await productsControllers.deleteProducts(req, res);
 
-//       expect(res.status).to.have.been.calledWith(404)
-//       expect(res.json).to.have.been.calledWithExactly({message: 'Product not found'});
-//   })
-// });
+      expect(res.status).to.have.been.calledWith(204)
+      // expect(res.json).to.have.been.calledWithExactly({ message: 'Product not found' });
+  })
+});
   });

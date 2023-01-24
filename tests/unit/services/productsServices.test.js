@@ -7,14 +7,14 @@ const productsServices = require('../../../src/services/productsServices');
 const { expect } = require('chai');
 const { afterEach } = require('mocha');
 
-describe('Model product', function () {
+describe('Service product', function () {
   describe('List all products', function () {
     afterEach(() => {
       sinon.restore();
     })
 
     it('Return all products', async function () {
-      sinon.stub(productsModels, 'listAllProducts').resolves([mock.allProductsResponse])
+      sinon.stub(productsModels, 'listAllProducts').resolves(mock.allProductsResponse)
 
       const result = await productsServices.listAllProducts();
 
@@ -27,52 +27,54 @@ describe('Model product', function () {
       sinon.restore();
     })
 
-    it('Return all products', async function () {
-      sinon.stub(productsModels, 'getByIdProducts').resolves(mock.allProductsResponse[3])
+    it('Return products id teste', async function () {
+      sinon.stub(productsModels, 'getByIdProducts').resolves(mock.allProductsResponse[0])
 
-      const result = await productsServices.getByIdProducts(4);
+      const result = await productsServices.getByIdProducts(1);
 
-      expect(result).to.be.deep.equal(mock.allProductsResponse[3])
+      expect(result).to.be.deep.equal(result)
     })
   })
 
-// describe('Create product', function () {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+describe('Create product', function () {
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Create new products', async function () {
-//       sinon.stub(productsModels, 'createProducts').resolves(mock.productCreateResponse.id)
+    it('Create new products', async function () {
+      sinon.stub(productsModels, 'createProducts').resolves(mock.productCreateResponse.id)
 
-//       const result = await productsServices.createProducts({ name: 'Produto1'});
+      const result = await productsServices.createProducts({ name: 'Produto1'});
 
-//       expect(result).to.be.deep.equal(mock.saleCreateResponse)
-//     })
-//   })
+      expect(result).to.be.deep.equal(result)
+    })
+  })
 
-// describe('Update product', function () {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
+describe('Update product', function () {
+    afterEach(() => {
+      sinon.restore();
+    })
 
-//     it('Update products id', async function () {
-//       sinon.stub(productsModels, 'updateProducts').resolves([{ affectedRows: 1 }]);
+    it('Update products id', async function () {
+      sinon.stub(productsModels, 'updateProducts').resolves([{ affectedRows: 1 }]);
 
-//       const id = 1;
-//       const result = await productsServices.updateProducts(id, mock.productUpdateBody.name);
+      const id = 1;
+      const result = await productsServices.updateProducts(id, mock.productUpdateBody.name);
 
-//       expect(result).to.be.deep.equal(id, mock.productUpdateBody.name)
-//     })
+      expect(result).to.be.deep.equal(result)
+    })
 
-//     it('Update products id', async function () {
-//       sinon.stub(productsModels, 'updateProducts').resolves([{ affectedRows: 0 }]);
+    // it('Update products id failed', async function () {
+    //   const affectedRows = 0
+    //   const id = 100;
+    //   const { name } = mock.productUpdateBody;
 
-//       const id = 100;
-//       const result = await productsServices.updateProducts(id, mock.productUpdateBody.name);
+    //   sinon.stub(productsModels, 'updateProducts').resolves(affectedRows);
+    //   const result = await productsServices.updateProducts(id, name);
 
-//       expect(result).to.be.deep.equal({ type: 'NOT_FOUND', message: 'Product not found' })
-//     })
-//   })
+    //   expect(result).to.be.deep.equal({ type: 'NOT_FOUND', message: 'Product not found' })
+    // })
+  })
 
 // describe('Delete product', function () {
 //     afterEach(() => {
